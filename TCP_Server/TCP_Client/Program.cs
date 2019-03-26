@@ -17,15 +17,20 @@ namespace TCP_Client
             string msg = Encoding.UTF8.GetString(data, 0, count);
             Console.WriteLine(msg);
             
-            while(true)  //test
+            //while(true)  //send message test
+            //{
+            //    string str = Console.ReadLine();
+            //    if(str == "c")
+            //    {
+            //        clientSocket.Close();
+            //        return;
+            //    }
+            //    clientSocket.Send(Encoding.UTF8.GetBytes(str));
+            //}
+
+            for (int i = 0; i < 100; i++)
             {
-                string str = Console.ReadLine();
-                if(str == "c")
-                {
-                    clientSocket.Close();
-                    return;
-                }
-                clientSocket.Send(Encoding.UTF8.GetBytes(str));
+                clientSocket.Send(Message.GetBytes(i.ToString()+"gav"+"大头"));
             }
 
             Console.ReadKey();

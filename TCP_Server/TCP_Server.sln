@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TCP_Server", "TCP_Server\TC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TCP_Client", "TCP_Client\TCP_Client.csproj", "{8B3E7A15-D9B4-43F5-BCBC-478295258EF7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConvertToByteArray", "ConvertToByteArray\ConvertToByteArray.csproj", "{476196DE-C5FF-4BE0-AA53-93E367287681}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQL_Manager", "SQL_Manager\SQL_Manager.csproj", "{C63709E3-DA07-4A8E-849F-4E64EB7634B2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{8B3E7A15-D9B4-43F5-BCBC-478295258EF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B3E7A15-D9B4-43F5-BCBC-478295258EF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B3E7A15-D9B4-43F5-BCBC-478295258EF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{476196DE-C5FF-4BE0-AA53-93E367287681}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{476196DE-C5FF-4BE0-AA53-93E367287681}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{476196DE-C5FF-4BE0-AA53-93E367287681}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{476196DE-C5FF-4BE0-AA53-93E367287681}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C63709E3-DA07-4A8E-849F-4E64EB7634B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C63709E3-DA07-4A8E-849F-4E64EB7634B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C63709E3-DA07-4A8E-849F-4E64EB7634B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C63709E3-DA07-4A8E-849F-4E64EB7634B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

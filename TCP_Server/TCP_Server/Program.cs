@@ -28,6 +28,7 @@ namespace TCP_Server
             serverSocket.BeginAccept(AcceptCallBack, serverSocket);
 
         }
+        static Message msg = new Message();
 
         static void AcceptCallBack(IAsyncResult ar)
         {
@@ -35,12 +36,12 @@ namespace TCP_Server
             Socket clientSocket = serverSocket.EndAccept(ar);
 
             //向客户端发送一条消息.
-            string msg = "hello,你好。";
-            byte[] data = Encoding.UTF8.GetBytes(msg);
+            string msgSrt = "hello,你好。";
+            byte[] data = Encoding.UTF8.GetBytes(msgSrt);
             clientSocket.Send(data);
 
             //接收客户端的多次消息发送.            
-            clientSocket.BeginReceive(dataBuffer, 0, 1024, SocketFlags.None, ReceiveCallBack, clientSocket);
+            clientSocket.BeginReceive(msg.Data, msg.StartIndex, msg.RemainSize, SocketFlags.None, ReceiveCallBack, clientSocket);
             //等待下一个客户端的连接.
             serverSocket.BeginAccept(AcceptCallBack, serverSocket);
         }
@@ -51,15 +52,21 @@ namespace TCP_Server
             try
             {
                 clientSocket = ar.AsyncState as Socket;
-                int count = clientSocket.EndReceive(ar);
+                int count = clientSocket.EndReceive(ar); //
                 if(count == 0)
                 {
                     clientSocket.Close();
                     return;
                 }
-                string msg = Encoding.UTF8.GetString(dataBuffer, 0, count);
-                Console.WriteLine("异步接受的数据：" + msg);
-                clientSocket.BeginReceive(dataBuffer, 0, 1024, SocketFlags.None, ReceiveCallBack, clientSocket);  //循环回调.
+
+                msg.AddCount(count); //!
+
+                //string msgStr = Encoding.UTF8.GetString(dataBuffer, 0, count);
+                //Console.WriteLine("从客户端异步接收的数据：" + msgStr);
+
+                msg.ReadMessage();
+                //clientSocket.BeginReceive(dataBuffer, 0, 1024, SocketFlags.None, ReceiveCallBack, clientSocket);  //循环回调.
+                clientSocket.BeginReceive(msg.Data, msg.StartIndex, msg.RemainSize, SocketFlags.None, ReceiveCallBack, clientSocket);
             }
             catch(Exception e)
             {
