@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConvertToByteArray", "Conve
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQL_Manager", "SQL_Manager\SQL_Manager.csproj", "{C63709E3-DA07-4A8E-849F-4E64EB7634B2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameServer", "GameServer\GameServer.csproj", "{54E3CE97-19E2-49C1-BAFD-42073CB45C90}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{C63709E3-DA07-4A8E-849F-4E64EB7634B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C63709E3-DA07-4A8E-849F-4E64EB7634B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C63709E3-DA07-4A8E-849F-4E64EB7634B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54E3CE97-19E2-49C1-BAFD-42073CB45C90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54E3CE97-19E2-49C1-BAFD-42073CB45C90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54E3CE97-19E2-49C1-BAFD-42073CB45C90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54E3CE97-19E2-49C1-BAFD-42073CB45C90}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

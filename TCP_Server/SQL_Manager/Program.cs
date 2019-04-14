@@ -11,16 +11,19 @@ namespace SQL_Manager
     {
         static void Main(string[] args)
         {
-            string connStr = "Database=test01;datasource=127.0.0.1;port=3306;user=sa;pwd=123";
+            //!!
+            string connStr = "Database=netserver01;datasource=127.0.0.1;port=3306;user=root;pwd=Xlm8504824";
+            //!!
+
             MySqlConnection conn = new MySqlConnection(connStr);
 
             conn.Open();
 
             #region 查询
             //MySqlCommand cmd1 = new MySqlCommand("select * from user", conn);
-            //MySqlDataReader reader = cmd.ExecuteReader();
+            //MySqlDataReader reader = cmd1.ExecuteReader();
 
-            //if(reader.Read())
+            //if (reader.Read())
             //{
             //    string username = reader.GetString("username");  //根据列名获取.
             //    string password = reader.GetString("password");
@@ -29,16 +32,29 @@ namespace SQL_Manager
             //reader.Close();
             #endregion
 
-            string username = "baba";string password = "gav";
+            #region 插入
+            string username = "baba"; string password = "gav";
             //MySqlCommand cmd = new MySqlCommand("insert into user set username = '" + username + "'" + "',password = '" + password + "'", conn);
-            MySqlCommand cmd = new MySqlCommand("insert into user set username = @utl, password = @pwd", conn);
+            MySqlCommand cmd2 = new MySqlCommand("insert into user set username = @utl, password = @pwd", conn);
 
-            cmd.Parameters.AddWithValue("utl", username);
-            cmd.Parameters.AddWithValue("pwd", password);
-            cmd.ExecuteNonQuery();
+            cmd2.Parameters.AddWithValue("utl", username);
+            cmd2.Parameters.AddWithValue("pwd", password);
+            cmd2.ExecuteNonQuery();
+            #endregion
+
+            #region 删除
+            MySqlCommand cmd3 = new MySqlCommand("delete form user where id = @id", conn);
+            cmd3.Parameters.AddWithValue("id", 3);
+            cmd3.ExecuteNonQuery();
+            #endregion
+
+            #region 更新
+            MySqlCommand cmd4 = new MySqlCommand("update user set password = @pwd where id = 3", conn);
+            cmd4.Parameters.AddWithValue("pwd", "didi");
+            cmd4.ExecuteNonQuery();
+            #endregion
 
             conn.Close();
-
             Console.ReadKey();
         }
     }

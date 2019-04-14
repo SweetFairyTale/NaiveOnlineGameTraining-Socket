@@ -1,0 +1,9 @@
+E:\Unity_resources\NaiveOnlineGameTraining-Socket\TCP_Server\SQL_Manager\bin\Debug\SQL_Manager.exe.config
+E:\Unity_resources\NaiveOnlineGameTraining-Socket\TCP_Server\SQL_Manager\bin\Debug\SQL_Manager.exe
+E:\Unity_resources\NaiveOnlineGameTraining-Socket\TCP_Server\SQL_Manager\bin\Debug\SQL_Manager.pdb
+E:\Unity_resources\NaiveOnlineGameTraining-Socket\TCP_Server\SQL_Manager\bin\Debug\MySql.Data.dll
+E:\Unity_resources\NaiveOnlineGameTraining-Socket\TCP_Server\SQL_Manager\bin\Debug\Google.Protobuf.dll
+E:\Unity_resources\NaiveOnlineGameTraining-Socket\TCP_Server\SQL_Manager\bin\Debug\MySql.Data.xml
+E:\Unity_resources\NaiveOnlineGameTraining-Socket\TCP_Server\SQL_Manager\obj\Debug\SQL_Manager.csprojResolveAssemblyReference.cache
+E:\Unity_resources\NaiveOnlineGameTraining-Socket\TCP_Server\SQL_Manager\obj\Debug\SQL_Manager.exe
+E:\Unity_resources\NaiveOnlineGameTraining-Socket\TCP_Server\SQL_Manager\obj\Debug\SQL_Manager.pdb
