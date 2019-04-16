@@ -11,6 +11,7 @@ namespace GameServer.Server
     {
         private Socket clientSocket;  //创建客户端Socket.
         private Server server; //持有服务器引用.
+        private Message msg = new Message();
 
         public Client() { }
         public Client(Socket clientSocket, Server server)
@@ -21,7 +22,7 @@ namespace GameServer.Server
 
         public void Start()
         {
-            clientSocket.BeginReceive(null, 0, 0, SocketFlags.None, ReceiveCallback, null);
+            clientSocket.BeginReceive(msg.Data, msg.StartIndex, msg.RemainSize, SocketFlags.None, ReceiveCallback, null);
             //?
         }
 
@@ -30,13 +31,14 @@ namespace GameServer.Server
             try
             {
                 //在回调函数中接收数据.
-                int count = clientSocket.EndReceive(ar);
+                int count = clientSocket.EndReceive(ar);  //新消息的数量.
                 if (count == 0)
                 {
                     Close();
                 }
                 //TODO 处理接收到的数据.
-                clientSocket.BeginReceive(null, 0, 0, SocketFlags.None, ReceiveCallback, null);
+                msg.ReadMessage(count);
+                Start();
             }
             catch (Exception e)
             {

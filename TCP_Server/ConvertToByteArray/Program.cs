@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-
+//一个测试客户端数据发送方案的类
 namespace ConvertToByteArray
 {
     class Program
