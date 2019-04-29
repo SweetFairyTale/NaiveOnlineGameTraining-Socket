@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 using System.Net.Sockets;
-
+using GameServer.Controller;
 namespace GameServer.Server
 {
     class Server
@@ -13,6 +13,9 @@ namespace GameServer.Server
         private IPEndPoint ipEndPoint;
         private Socket serverSocket;  //创建服务器端Socket.
         private List<Client> clientList;  //管理所有客户端.
+
+        //其他类通过服务器上的controllerManager对象处理消息，减少耦合.
+        private ControllerManager controllerManager = new ControllerManager();
 
         public Server(){ }
 
