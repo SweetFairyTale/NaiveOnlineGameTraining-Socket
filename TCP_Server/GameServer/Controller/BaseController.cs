@@ -7,10 +7,10 @@ using Common;  //自定义类库.
 
 namespace GameServer.Controller
 {
-    abstract class BaseController
+    abstract class BaseController  //controller基础类.
     {
         RequestCode requestCode = RequestCode.None;
 
-        public abstract void DefaultHandle();
+        public virtual void DefaultHandler() { }
     }
 }
