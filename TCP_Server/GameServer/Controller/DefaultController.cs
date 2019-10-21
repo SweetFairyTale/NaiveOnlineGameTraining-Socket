@@ -8,6 +8,8 @@ namespace GameServer.Controller
 {
     class DefaultController : BaseController
     {
+        //即继承BaseController默认的requestCode.None
 
+        
     }
 }

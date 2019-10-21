@@ -4,20 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net.Sockets;
+using Common;
+using MySql.Data.MySqlClient;
+using GameServer.Tool;
 
-namespace GameServer.Server
+namespace GameServer.MyServer
 {
     class Client
     {
         private Socket clientSocket;  //创建客户端Socket.
         private Server server;  //持有服务器引用.
         private Message msg = new Message();  //客户端使用Message类处理消息.
+        private MySqlConnection mysqlConn;  //客户端持有数据库连接对象引用，可供controller调用执行数据库操作.
 
         public Client() { }
+
         public Client(Socket clientSocket, Server server)
         {
             this.clientSocket = clientSocket;
             this.server = server;
+            mysqlConn = ConnHelper.Connect();
         }
 
         public void Start()
@@ -36,8 +42,8 @@ namespace GameServer.Server
                 {
                     Close();
                 }
-                //TODO 处理接收到的数据.
-                msg.ReadMessage(count);  //读取count数量的消息.
+                //接收解析出的数据并转发给ControllerManager(通过自身提供给Message类的回调函数获得数据).
+                msg.ReadMessage(count, OnProcessMessage);  //读取count数量的消息.
                 Start();
             }
             catch (Exception e)
@@ -47,13 +53,25 @@ namespace GameServer.Server
             }           
         }
 
+        private void OnProcessMessage(RequestCode requestCode, ActionCode actionCode, string data)
+        {
+            server.HandleRequest(requestCode, actionCode, data, this);
+        }
+
         private void Close()
         {
+            ConnHelper.CloseConnection(mysqlConn);
             if(clientSocket != null)
             {
                 clientSocket.Close();
             }
             server.RemoveClient(this);
+        }
+
+        public void Send(RequestCode requestCode, string data)
+        {
+            byte[] responseBytes = Message.PackResponseData(requestCode, data);
+            clientSocket.Send(responseBytes);
         }
    
     }
