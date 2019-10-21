@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 
+//测试MySQL连接和增删改查.
+//首先在项目"引用-浏览"中添加数据库支持dll文件.
 namespace SQL_Manager
 {
     class Program

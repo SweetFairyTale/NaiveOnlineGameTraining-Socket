@@ -28,7 +28,7 @@ namespace TCP_Server
             serverSocket.BeginAccept(AcceptCallBack, serverSocket);
 
         }
-        static Message msg = new Message();
+        static Message msg = new Message();  //自定义消息处理对象.
 
         static void AcceptCallBack(IAsyncResult ar)
         {

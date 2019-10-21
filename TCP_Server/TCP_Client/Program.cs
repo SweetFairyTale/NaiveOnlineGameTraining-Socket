@@ -30,7 +30,7 @@ namespace TCP_Client
 
             for (int i = 0; i < 100; i++)
             {
-                clientSocket.Send(Message.GetBytes(i.ToString()+"gav"+"大头"));
+                clientSocket.Send(Message.GetBytes(i.ToString()+"gav"+"大头"));  //利用自定义Message类发送数据.
             }
 
             Console.ReadKey();

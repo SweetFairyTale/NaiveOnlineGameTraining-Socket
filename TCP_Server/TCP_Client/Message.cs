@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace TCP_Client
 {
+    //组拼数据头和真实数据，形成一个完整字节序列.
     class Message
     {
         public static byte[] GetBytes(string data)
