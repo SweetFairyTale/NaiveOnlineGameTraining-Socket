@@ -5,7 +5,7 @@ using System;
 
 public class UIManager : BaseManager{
 
-    /// 
+    /// [此工程不使用单例模式]
     /// 单例模式的核心
     /// 1，定义一个静态的对象 在外界访问 在内部构造
     /// 2，构造方法私有化
@@ -41,10 +41,12 @@ public class UIManager : BaseManager{
     private Stack<BasePanel> panelStack;
 
     //初始化Manager.
-    public UIManager()
+    public UIManager(GameFacade facade) : base(facade)
     {
         ParseUIPanelTypeJson();
     }
+
+    //public UIManager() { ParseUIPanelTypeJson(); }
 
     /// <summary>
     /// 把某个页面入栈，  把某个页面显示在界面上

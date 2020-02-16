@@ -53,7 +53,7 @@ namespace GameServer.MyServer
 
         public void RemoveClient(Client client)
         {
-            lock(clientList)
+            lock(clientList)  //防止多个client对象同时访问remove方法.
             {
                 clientList.Remove(client);
             }
@@ -64,7 +64,7 @@ namespace GameServer.MyServer
         /// </summary>
         /// <param name="client">指定客户端</param>
         /// <param name="requestCode">指定处理类型</param>
-        /// <param name="data"></param>
+        /// <param name="data">真实数据</param>
         public void SendResponse(Client client, RequestCode requestCode, string data)  //在ControllerManager中调用.
         {
             client.Send(requestCode, data);

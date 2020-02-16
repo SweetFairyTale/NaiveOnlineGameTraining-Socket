@@ -41,8 +41,10 @@ namespace GameServer.MyServer
         }
 
         /// <summary>
-        /// 解析/读取数据.
+        /// 解析/读取数据，处理粘包分包问题.
         /// </summary>
+        /// <param name="newDataAmount">接收到的原始数据</param>
+        /// <param name="processDataCallback">处理解析数据的回调方法</param>
         public void ReadMessage(int newDataAmount, Action<RequestCode,ActionCode,string> processDataCallback)
         {
             startIndex += newDataAmount;
@@ -57,8 +59,8 @@ namespace GameServer.MyServer
 
                     RequestCode requestCode = (RequestCode)BitConverter.ToInt32(data, 4);
                     ActionCode actionCode = (ActionCode)BitConverter.ToInt32(data, 8);
-                    string strData = Encoding.UTF8.GetString(data, 12, count-8);
-                    processDataCallback(requestCode, actionCode, strData);  //!
+                    string strData = Encoding.UTF8.GetString(data, 12, count - 8);
+                    processDataCallback(requestCode, actionCode, strData);  //无法return多个值所以使用回调方法直接在这儿处理？
                     Array.Copy(data, count + 4, data, 0, startIndex - 4 - count);
                     startIndex -= count + 4;
                 }
@@ -69,6 +71,12 @@ namespace GameServer.MyServer
             }
         }
 
+        /// <summary>
+        /// 打包需要返回给客户端的数据，由数据长度、RequestCode和真实数据组成.
+        /// </summary>
+        /// <param name="requestCode"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public static byte[] PackResponseData(RequestCode requestCode, string data)
         {
             byte[] requestCodeBytes = BitConverter.GetBytes((int)requestCode);

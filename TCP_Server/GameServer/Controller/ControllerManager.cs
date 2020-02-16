@@ -16,7 +16,7 @@ namespace GameServer.Controller
     {
         private Dictionary<RequestCode, BaseController> controllerDict = new Dictionary<RequestCode, BaseController>();
 
-        private Server myServer;
+        private Server myServer;  //持有Server引用.
 
         public ControllerManager(Server server)
         {
@@ -31,31 +31,38 @@ namespace GameServer.Controller
             controllerDict.Add(defaultController.RequestCode, defaultController);
         }
 
-        //RequestCode未指定时默认调用的消息处理方法.
+        /// <summary>
+        /// 根据Code提供多种对请求的处理方法，使用反射机制.
+        /// RequestCode未指定时默认调用的消息处理方法.
+        /// </summary>
+        /// <param name="requestCode"></param>
+        /// <param name="actionCode"></param>
+        /// <param name="data"></param>
+        /// <param name="client"></param>
         public void HandleRequest(RequestCode requestCode, ActionCode actionCode, string data, Client client)
         {
             BaseController controller;
             bool isGet = controllerDict.TryGetValue(requestCode, out controller);
             if(isGet == false)
             {
-                Console.WriteLine("[" + requestCode + "]no matching function");  //或输出到日志.
+                Console.WriteLine("[ERROR]:" + "[" + requestCode + "]no matching controller-class");  //实际应输出到日志.
                 return;
             }
-
-            string methodName = Enum.GetName(typeof(ActionCode), actionCode);  //转换值枚举为字符串.
-            MethodInfo mi = controller.GetType().GetMethod(methodName);  //根据函数名得到mi.
+        
+            string methodName = Enum.GetName(typeof(ActionCode), actionCode);  //转换值枚举为字符串，从而根据actionCode得到方法名.
+            MethodInfo mi = controller.GetType().GetMethod(methodName);  //根据方法名得到mi.
             if(mi == null)
             {
-                Console.WriteLine("[" + controller.GetType() + "]no matching function ->" + methodName);
+                Console.WriteLine("[ERROR]:" + "[" + controller.GetType() + "]no matching function ->" + methodName);
                 return;
             }
-            object[] parameters = new object[] { data };
-            object obj = mi.Invoke(controller, parameters);  //通过mi在controller对象中调用methodName的方法，parameters可用于传递一组参数，调用结果返回值为obj.
-            if(obj == null || string.IsNullOrEmpty(obj as string))
+            object[] parameters = new object[] { data, client, myServer };
+            object obj = mi.Invoke(controller, parameters);  //通过mi在controller对象中调用methodName的方法，parameters可用于传递一组参数，调用结果返回值存放在obj.
+            if(obj == null || string.IsNullOrEmpty(obj as string))  //不需要给客户端反馈.
             {
                 return;
             }
-            myServer.SendResponse(client, requestCode, obj as string);
+            myServer.SendResponse(client, requestCode, obj as string);  //需要给客户端反馈.
         }
     }
 }

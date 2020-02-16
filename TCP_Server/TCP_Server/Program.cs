@@ -1,6 +1,9 @@
-﻿using System;
+﻿/*
+ * proj 001 -- 控制台应用服务器端测试.
+ */
+using System;
 using System.Text;
-using System.Net.Sockets;
+using System.Net.Sockets;  //引入Socket相关命名空间.
 using System.Net;
 
 namespace TCP_Server
@@ -13,19 +16,20 @@ namespace TCP_Server
             Console.ReadKey();
         }
 
-        static byte[] dataBuffer = new byte[1024];
+        //static byte[] dataBuffer = new byte[1024];  //该数据缓冲已转移至Message类.
 
+        //异步接收消息方法.
         static void StartServerAsync()
         {
             Socket serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            IPAddress ipAddress = IPAddress.Parse("127.0.0.1");  //47.100.2.223
+            IPAddress ipAddress = IPAddress.Parse("127.0.0.1");  //IP:47.100.2.223
             IPEndPoint ipEndPoint = new IPEndPoint(ipAddress, 2049);
             serverSocket.Bind(ipEndPoint);  //绑定ip与端口号.
-            serverSocket.Listen(10);  //同时等待处理的队列长度(不是最大玩家数).
+            serverSocket.Listen(10);  //同时等待处理的队列长度.
 
-            //Socket clientSocket = serverSocket.Accept();  //接收一个客户端连接.(改异步)
+            //Socket clientSocket = serverSocket.Accept();  //接收一个客户端连接(Accept使用同步的方法).
 
-            serverSocket.BeginAccept(AcceptCallBack, serverSocket);
+            serverSocket.BeginAccept(AcceptCallBack, serverSocket);  //修改后可异步接收多个客户端.
 
         }
         static Message msg = new Message();  //自定义消息处理对象.
@@ -52,10 +56,13 @@ namespace TCP_Server
             try
             {
                 clientSocket = ar.AsyncState as Socket;
-                int count = clientSocket.EndReceive(ar); //
-                if(count == 0)
+                int count = clientSocket.EndReceive(ar); //EndReceive遇到客户端非正常关闭时抛出异常.
+                if (count == 0)
                 {
-                    clientSocket.Close();
+                    //当客户端正常关闭时，EndReceive会持续受到长度为0的数据，此时根据count为0即可进行处理.
+                    //当客户端发送空消息时，服务器不会接收到任何消息(conut无值).
+                    clientSocket.Close();  //正常关闭
+                    
                     return;
                 }
 
@@ -73,35 +80,36 @@ namespace TCP_Server
                 Console.WriteLine(e);
                 if(clientSocket != null)
                 {
-                    clientSocket.Close();
+                    clientSocket.Close();  //非正常关闭.
                 }
             }    
             
         }
 
-        static void StartServerSync()
-        {
-            Socket serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            IPAddress ipAddress = IPAddress.Parse("127.0.0.1");  //47.100.2.223
-            IPEndPoint ipEndPoint = new IPEndPoint(ipAddress, 2049);
-            serverSocket.Bind(ipEndPoint);  //绑定ip与端口号.
-            serverSocket.Listen(10);  //同时等待处理的队列长度(不是最大玩家数).
-            Socket clientSocket = serverSocket.Accept();  //接收一个客户端连接.
+        ////同步接收消息方法 -- 程序会阻塞
+        //static void StartServerSync()
+        //{
+        //    Socket serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+        //    IPAddress ipAddress = IPAddress.Parse("127.0.0.1");  //47.100.2.223
+        //    IPEndPoint ipEndPoint = new IPEndPoint(ipAddress, 2049);
+        //    serverSocket.Bind(ipEndPoint);  //绑定ip与端口号.
+        //    serverSocket.Listen(10);  //同时等待处理的队列长度(不是最大玩家数).
+        //    Socket clientSocket = serverSocket.Accept();  //接收一个客户端连接.
 
-            //向客户端发送一条消息.
-            string msg = "hello, 你好。";
-            byte[] data = Encoding.UTF8.GetBytes(msg);
-            clientSocket.Send(data);
+        //    //向客户端发送一条消息.
+        //    string msg = "hello, 你好。";
+        //    byte[] data = Encoding.UTF8.GetBytes(msg);
+        //    clientSocket.Send(data);
 
-            //接收客户端的一条消息.
-            //byte[] dataBuffer = new byte[1024];
-            int count = clientSocket.Receive(dataBuffer);
-            string msgReceive = Encoding.UTF8.GetString(dataBuffer, 0, count);
+        //    //接收客户端的一条消息.
+        //    //byte[] dataBuffer = new byte[1024];
+        //    int count = clientSocket.Receive(dataBuffer);
+        //    string msgReceive = Encoding.UTF8.GetString(dataBuffer, 0, count);
 
-            Console.WriteLine(msgReceive);
+        //    Console.WriteLine(msgReceive);
 
-            clientSocket.Close();
-            serverSocket.Close();
-        }
+        //    clientSocket.Close();
+        //    serverSocket.Close();
+        //}
     }
 }

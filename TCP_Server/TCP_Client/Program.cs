@@ -1,4 +1,7 @@
-﻿using System;
+﻿/*
+ * proj 002 -- 控制台应用客户端测试
+ */
+using System;
 using System.Text;
 using System.Net;
 using System.Net.Sockets;

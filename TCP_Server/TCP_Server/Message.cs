@@ -25,6 +25,7 @@ namespace TCP_Server
                 return data;
             }
         }
+
         public int StartIndex
         {
             get
@@ -49,10 +50,10 @@ namespace TCP_Server
             while(true)
             {
                 if (startIndex <= 4) return;
-                int count = BitConverter.ToInt32(data, 0);  //读取由前四个字节(为一个int32)组成的数据头，即真实数据的字节数.
+                int count = BitConverter.ToInt32(data, 0);  //读取由前四个字节(为一个int32)组成的数据头，该数据头表示后接真实数据的字节数.
                 if ((startIndex - 4) >= count)
                 {
-                    string s = Encoding.UTF8.GetString(data, 4, count);  //从4开始往后读count个字节，转换为真实数据.
+                    string s = Encoding.UTF8.GetString(data, 4, count);  //从4开始往后读到第count个字节，转换为真实数据.
                     Console.WriteLine("解析到的数据:" + s);
                     Array.Copy(data, count + 4, data, 0, startIndex - 4 - count);
                     startIndex -= count + 4;

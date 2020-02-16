@@ -1,12 +1,14 @@
-﻿using System;
+﻿/*
+ * proj04 -- 测试MySQL连接和增删改查.
+ * 需先在项目"引用"中添加数据库支持MySql.Data文件.
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 
-//测试MySQL连接和增删改查.
-//首先在项目"引用-浏览"中添加数据库支持dll文件.
 namespace SQL_Manager
 {
     class Program
@@ -14,7 +16,8 @@ namespace SQL_Manager
         static void Main(string[] args)
         {
             //!!
-            string connStr = "Database=netserver01;datasource=127.0.0.1;port=3306;user=root;pwd=Xlm8504824";
+            //string connStr = "Database=netserver01;datasource=127.0.0.1;port=3306;user=root;pwd=Xlm8504824";
+            string connStr = "Database=netserver01;datasource=127.0.0.1;port=3306;user=root;pwd=0304";
             //!!
 
             MySqlConnection conn = new MySqlConnection(connStr);

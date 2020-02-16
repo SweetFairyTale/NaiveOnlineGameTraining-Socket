@@ -1,11 +1,11 @@
-﻿using System;
+﻿/*
+ * proj03 -- 测试客户端数据发送方案的项目
+ * 在每条数据前加上固定4个字节(int32)的信息用于表示数据的长度
+ * 读取数据流时参考此长度向后读取相应数据
+ */
+using System;
 using System.Text;
 
-//一个测试客户端数据发送方案的项目
-/*
- 在每条数据前加上固定4个字节(int32)的信息用于表示数据的长度
- 读取数据流时参考此长度向后读取相应数据
- */
 namespace ConvertToByteArray
 {
     class Program

@@ -43,7 +43,7 @@ namespace GameServer.MyServer
                     Close();
                 }
                 //接收解析出的数据并转发给ControllerManager(通过自身提供给Message类的回调函数获得数据).
-                msg.ReadMessage(count, OnProcessMessage);  //读取count数量的消息.
+                msg.ReadMessage(count, OnProcessMessageCallback);  //读取count数量的消息，并为Message类提供回调方法.
                 Start();
             }
             catch (Exception e)
@@ -53,7 +53,7 @@ namespace GameServer.MyServer
             }           
         }
 
-        private void OnProcessMessage(RequestCode requestCode, ActionCode actionCode, string data)
+        private void OnProcessMessageCallback(RequestCode requestCode, ActionCode actionCode, string data)
         {
             server.HandleRequest(requestCode, actionCode, data, this);
         }

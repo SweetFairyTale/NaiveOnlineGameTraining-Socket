@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.902
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TCP_Server", "TCP_Server\TCP_Server.csproj", "{4BF904C2-5123-4E14-A6CF-8D9ABCBDBBAA}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameServer", "GameServer\GameServer.csproj", "{54E3CE97-19E2-49C1-BAFD-42073CB45C90}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{5C83DE08-0B52-4514-A300-AD4D6722C35D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Standard", "Standard\Standard.csproj", "{85335479-8EE8-4684-8095-7BEAD6E627E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,8 +47,15 @@ Global
 		{5C83DE08-0B52-4514-A300-AD4D6722C35D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C83DE08-0B52-4514-A300-AD4D6722C35D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C83DE08-0B52-4514-A300-AD4D6722C35D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85335479-8EE8-4684-8095-7BEAD6E627E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85335479-8EE8-4684-8095-7BEAD6E627E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85335479-8EE8-4684-8095-7BEAD6E627E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85335479-8EE8-4684-8095-7BEAD6E627E9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {96E35BFF-988C-4C44-AFA0-04CBE22DB727}
 	EndGlobalSection
 EndGlobal

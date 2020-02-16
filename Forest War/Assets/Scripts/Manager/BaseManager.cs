@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class BaseManager{
 
+    protected GameFacade gameFacade;
+    public BaseManager(GameFacade facade)
+    {
+        gameFacade = facade;
+    }
+
     public virtual void OnInit()
     {
 

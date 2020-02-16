@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+ * ConnHelper类与MyServer.Client交互
+ * 用于建立与数据库的连接
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +13,7 @@ namespace GameServer.Tool
 {
     class ConnHelper
     {
-        public const string CONNSTR = "";  //连接字符串.
+        public const string CONNSTR = "datasource=*:*:*:*;port=3306;database=;user=;pwd=";  //连接字符串.(Class 35)
 
         public static MySqlConnection Connect()
         {
@@ -21,7 +25,7 @@ namespace GameServer.Tool
             }
             catch (Exception e)
             {
-                Console.WriteLine("Database Connectiong error:" + e);
+                Console.WriteLine("[ERROR]:Database Connectiong error:" + e);
                 return null;
             }
         }
@@ -34,7 +38,7 @@ namespace GameServer.Tool
             }
             else
             {
-                Console.WriteLine("MySqlConnection is null!");
+                Console.WriteLine("[ERROR]:MySqlConnection is null!");
             }
         }
 
