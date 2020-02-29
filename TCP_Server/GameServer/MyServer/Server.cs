@@ -14,7 +14,7 @@ namespace GameServer.MyServer
     {
         private IPEndPoint ipEndPoint;
         private Socket serverSocket;  //服务器端Socket.
-        private List<Client> clientList;  //管理所有客户端.
+        private List<Client> clientList = new List<Client>();  //管理所有客户端.
 
         //其他类通过服务器上的controllerManager对象处理消息，减少耦合.
         private ControllerManager controllerManager;
@@ -63,11 +63,11 @@ namespace GameServer.MyServer
         /// 返回数据结果以响应客户端.
         /// </summary>
         /// <param name="client">指定客户端</param>
-        /// <param name="requestCode">指定处理类型</param>
+        /// <param name="actionCode">指定处理类型</param>
         /// <param name="data">真实数据</param>
-        public void SendResponse(Client client, RequestCode requestCode, string data)  //在ControllerManager中调用.
+        public void SendResponse(Client client, ActionCode actionCode, string data)  //在ControllerManager中调用.
         {
-            client.Send(requestCode, data);
+            client.Send(actionCode, data);
         }
 
         public void HandleRequest(RequestCode requestCode, ActionCode actionCode, string data, Client client)

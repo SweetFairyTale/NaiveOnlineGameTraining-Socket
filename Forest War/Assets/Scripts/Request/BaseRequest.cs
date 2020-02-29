@@ -9,26 +9,37 @@ using Common;
 /// </summary>
 public class BaseRequest : MonoBehaviour
 {
-    private RequestCode requestCode = RequestCode.None;
+    protected RequestCode requestCode = RequestCode.None;
+    protected ActionCode actionCode = ActionCode.None;
+    //protected GameFacade facade;  //好像也没什么卵用(
+
 
     public virtual void Awake()
     {
-        GameFacade.Instance.AddRequest(requestCode, this);
+        GameFacade.Instance.AddRequest(actionCode, this);
+        //facade = GameFacade.Instance;
     }
 
+    protected void SendRequest(string data)
+    {
+        GameFacade.Instance.SendRequest(requestCode, actionCode, data);
+        //facade.SendRequest(requestCode, actionCode, data);
+    }
+
+    //暂时好像没什么卵用//
     public virtual void SendRequest()
     {
 
     }
 
-    public virtual void SendResponse(string data)
+    public virtual void OnResponse(string data)
     {
 
     }
 
     public virtual void OnDestroy()
     {
-        GameFacade.Instance.RemoveRequest(requestCode);
+        GameFacade.Instance.RemoveRequest(actionCode);
     }
 
 }

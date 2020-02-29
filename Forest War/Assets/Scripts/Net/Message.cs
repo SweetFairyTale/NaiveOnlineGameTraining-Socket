@@ -40,11 +40,11 @@ public class Message
     }
 
     /// <summary>
-    /// 解析/读取数据，处理粘包分包问题.
+    /// 客户端解析/读取数据，处理粘包分包问题.
     /// </summary>
-    /// <param name="newDataAmount">接收到的原始数据</param>
+    /// <param name="newDataAmount">接收到的原始数据长度</param>
     /// <param name="processDataCallback">处理解析数据的回调方法</param>
-    public void ReadMessage(int newDataAmount, Action<RequestCode, string> processDataCallback)
+    public void ReadMessage(int newDataAmount, Action<ActionCode, string> processDataCallback)
     {
         startIndex += newDataAmount;
         while (true)
@@ -53,9 +53,9 @@ public class Message
             int count = BitConverter.ToInt32(data, 0);
             if ((startIndex - 4) >= count)
             {
-                RequestCode requestCode = (RequestCode)BitConverter.ToInt32(data, 4);
+                ActionCode actionCode = (ActionCode)BitConverter.ToInt32(data, 4);
                 string strData = Encoding.UTF8.GetString(data, 8, count - 4);
-                processDataCallback(requestCode, strData);  //无法return多个值所以使用回调方法直接在这儿处理？
+                processDataCallback(actionCode, strData);  //无法return多个值所以使用回调方法直接在这儿处理？
                 Array.Copy(data, count + 4, data, 0, startIndex - 4 - count);
                 startIndex -= count + 4;
             }
@@ -80,6 +80,8 @@ public class Message
         byte[] dataBytes = Encoding.UTF8.GetBytes(data);
         int dataAmount = requestCodeBytes.Length + dataBytes.Length + actionCodeBytes.Length;
         byte[] dataAmountBytes = BitConverter.GetBytes(dataAmount);
-        return dataAmountBytes.Concat(requestCodeBytes).Concat(dataBytes).Concat(actionCodeBytes).ToArray();
+        return dataAmountBytes.Concat(requestCodeBytes).ToArray()
+            .Concat(actionCodeBytes).ToArray()
+            .Concat(dataBytes).ToArray();
     }
 }

@@ -15,7 +15,11 @@ namespace GameServer.MyServer
         private Socket clientSocket;  //创建客户端Socket.
         private Server server;  //持有服务器引用.
         private Message msg = new Message();  //客户端使用Message类处理消息.
-        private MySqlConnection mysqlConn;  //客户端持有数据库连接对象引用，可供controller调用执行数据库操作.
+        private MySqlConnection mysqlConn;  //客户端持有数据库连接对象引用，可供UserController调用执行数据库操作.
+        public MySqlConnection MysqlConn
+        {
+            get { return mysqlConn; }
+        }
 
         public Client() { }
 
@@ -68,9 +72,9 @@ namespace GameServer.MyServer
             server.RemoveClient(this);
         }
 
-        public void Send(RequestCode requestCode, string data)
+        public void Send(ActionCode actionCode, string data)
         {
-            byte[] responseBytes = Message.PackResponseData(requestCode, data);
+            byte[] responseBytes = Message.PackResponseData(actionCode, data);
             clientSocket.Send(responseBytes);
         }
    

@@ -4,11 +4,16 @@ using System;
 
 
 public enum UIPanelType  {
-    ItemMessage,
-    Knapsack,
-    MainMenu,
-    Shop,
-    Skill,
-    System,
-    Task
+    Message,
+    Start,
+    Login,
+    Register
+    
+    //ItemMessage,
+    //Knapsack,
+    //MainMenu,
+    //Shop,
+    //Skill,
+    //System,
+    //Task
 }

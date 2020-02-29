@@ -7,26 +7,26 @@ public class RequestManager : BaseManager {
 
     public RequestManager(GameFacade facade) : base(facade) { }
 
-    private Dictionary<RequestCode, BaseRequest> requestDict = new Dictionary<RequestCode, BaseRequest>();
+    private Dictionary<ActionCode, BaseRequest> requestDict = new Dictionary<ActionCode, BaseRequest>();
 
-    public void AddRequest(RequestCode requestCode, BaseRequest request)
+    public void AddRequest(ActionCode actionCode, BaseRequest request)
     {
-        requestDict.Add(requestCode, request);
+        requestDict.Add(actionCode, request);
     }
 
-    public void RemoveRequest(RequestCode requestCode)
+    public void RemoveRequest(ActionCode actionCode)
     {
-        requestDict.Remove(requestCode);
+        requestDict.Remove(actionCode);
     }
 
-    public void HandleResponse(RequestCode requestCode, string data)
+    public void HandleResponse(ActionCode actionCode, string data)
     {
-        BaseRequest request = requestDict.TryGet(requestCode);
+        BaseRequest request = requestDict.TryGet(actionCode);
         if(request == null)
         {
-            Debug.LogError("[" + requestCode + "] is not available");
+            Debug.LogError("No required BaseRequest, [" + actionCode + "] is not handled");
             return;
         }
-        request.SendResponse(data);
+        request.OnResponse(data);
     }
 }

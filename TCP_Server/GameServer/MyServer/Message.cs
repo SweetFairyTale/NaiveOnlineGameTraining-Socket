@@ -74,16 +74,18 @@ namespace GameServer.MyServer
         /// <summary>
         /// 打包需要返回给客户端的数据，由数据长度、RequestCode和真实数据组成.
         /// </summary>
-        /// <param name="requestCode"></param>
+        /// <param name="actionCode"></param>
         /// <param name="data"></param>
         /// <returns></returns>
-        public static byte[] PackResponseData(RequestCode requestCode, string data)
+        public static byte[] PackResponseData(ActionCode actionCode, string data)
         {
-            byte[] requestCodeBytes = BitConverter.GetBytes((int)requestCode);
+            byte[] requestCodeBytes = BitConverter.GetBytes((int)actionCode);
             byte[] dataBytes = Encoding.UTF8.GetBytes(data);
             int dataAmount = requestCodeBytes.Length + dataBytes.Length;
             byte[] dataAmountBytes = BitConverter.GetBytes(dataAmount);
-            return dataAmountBytes.Concat(requestCodeBytes).Concat(dataBytes).ToArray();
+            byte[] newBytes = dataAmountBytes.Concat(requestCodeBytes).ToArray();
+            return newBytes.Concat(dataBytes).ToArray();
+            //return dataAmountBytes.Concat(requestCodeBytes).Concat(dataBytes).ToArray();
         }
     }
 }

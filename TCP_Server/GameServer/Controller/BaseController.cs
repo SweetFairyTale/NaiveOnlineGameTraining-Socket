@@ -10,8 +10,7 @@ namespace GameServer.Controller
 {
     abstract class BaseController  //controller基础类.
     {
-        RequestCode requestCode = RequestCode.None;
-
+        protected RequestCode requestCode = RequestCode.None;
         public RequestCode RequestCode
         {
             get

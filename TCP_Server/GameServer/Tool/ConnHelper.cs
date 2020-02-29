@@ -1,6 +1,6 @@
 ﻿/*
  * ConnHelper类与MyServer.Client交互
- * 用于建立与数据库的连接
+ * 用于建立以及销毁与数据库的连接
  */
 using System;
 using System.Collections.Generic;
@@ -13,7 +13,7 @@ namespace GameServer.Tool
 {
     class ConnHelper
     {
-        public const string CONNSTR = "datasource=*:*:*:*;port=3306;database=;user=;pwd=";  //连接字符串.(Class 35)
+        public const string CONNSTR = "datasource=127.0.0.1;port=3306;database=forestwar;user=root;pwd=0304";  //连接字符串.(Class 35)
 
         public static MySqlConnection Connect()
         {

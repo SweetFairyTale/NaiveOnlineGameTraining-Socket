@@ -25,6 +25,7 @@ public class ClientManager : BaseManager {
         try
         {
             clientSocket.Connect(IP, PORT);
+            Start();
         }
         catch (Exception e)
         {
@@ -37,8 +38,10 @@ public class ClientManager : BaseManager {
         clientSocket.BeginReceive(msg.Data, msg.StartIndex, msg.RemainSize, SocketFlags.None, ReceiveCallback, null);
     }
 
+    //△System.Net.Sockets中的BeginReceive的回调方法无法直接访问Unity中的游戏资源△
     private void ReceiveCallback(IAsyncResult ar)
     {
+        Debug.Log("ReceiveCallback Called");
         try
         {
             int count = clientSocket.EndReceive(ar);
@@ -51,11 +54,17 @@ public class ClientManager : BaseManager {
         }
     }
 
-    private void OnProcessMessageCallback(RequestCode requestCode, string data)
+    private void OnProcessMessageCallback(ActionCode actionCode, string data)
     {
-        gameFacade.HandleResponse(requestCode, data);
+        gameFacade.HandleResponse(actionCode, data);
     }
 
+    /// <summary>
+    /// 提供打包数据和发送到服务器端的方法，通过GameFacade中介来调用
+    /// </summary>
+    /// <param name="requestCode"></param>
+    /// <param name="actionCode"></param>
+    /// <param name="data"></param>
     public void SendRequest(RequestCode requestCode, ActionCode actionCode, string data)
     {
         byte[] bytes = Message.PackResponseData(requestCode, actionCode, data);

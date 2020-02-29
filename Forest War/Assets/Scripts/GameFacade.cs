@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Common;
 
+//单例
 public class GameFacade : MonoBehaviour {
 
     private static GameFacade _instance;
@@ -22,7 +23,6 @@ public class GameFacade : MonoBehaviour {
     private ClientManager clientManager;
 
     
-
     void Awake()
     {
         if(_instance != null)  //避免场景中有多个实例.
@@ -75,23 +75,47 @@ public class GameFacade : MonoBehaviour {
         DestoryManager();
     }
 
-    public void AddRequest(RequestCode requestCode, BaseRequest request)
+    public void AddRequest(ActionCode actionCode, BaseRequest request)
     {
-        requestManager.AddRequest(requestCode, request);
+        requestManager.AddRequest(actionCode, request);
     }
 
-    public void RemoveRequest(RequestCode requestCode)
+    public void RemoveRequest(ActionCode actionCode)
     {
-        requestManager.RemoveRequest(requestCode);
+        requestManager.RemoveRequest(actionCode);
     }
 
     /// <summary>
-    /// 转发ClientManager的处理请求到RequestManager，进而调用对应的BaseRequest处理
+    /// 转发ClientManager的处理请求到RequestManager，进而调用对应BaseRequest的派生类处理.
     /// </summary>
-    /// <param name="requestCode"></param>
+    /// <param name="actionCode"></param>
     /// <param name="data"></param>
-    public void HandleResponse(RequestCode requestCode, string data)
+    public void HandleResponse(ActionCode actionCode, string data)
     {
-        requestManager.HandleResponse(requestCode, data);
+        requestManager.HandleResponse(actionCode, data);
+    }
+       
+    /// <summary>
+    /// 使用Message面板显示提示信息.
+    /// </summary>
+    /// <param name="data"></param>
+    public void ShowMessage(string data)
+    {
+        uiManager.ShowMessage(data);
+    }
+
+    public void SendRequest(RequestCode requestCode, ActionCode actionCode, string data)
+    {
+        clientManager.SendRequest(requestCode, actionCode, data);
+    }
+
+    public void PlayBgSound(string soundName)
+    {
+        audioManager.PlayBgSound(soundName);
+    }
+
+    public void PlayComSound(string soundName)
+    {
+        audioManager.PlayComSound(soundName);
     }
 }

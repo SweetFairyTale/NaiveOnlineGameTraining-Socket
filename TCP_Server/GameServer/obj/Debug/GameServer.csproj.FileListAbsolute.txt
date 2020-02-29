@@ -1,1 +1,14 @@
 E:\Unity_resources\NaiveOnlineGameTraining-Socket\TCP_Server\GameServer\bin\Debug\GameServer.exe.config
+D:\Workspace\Unity\NaiveOnlineGameTraining-Socket\TCP_Server\GameServer\bin\Debug\GameServer.exe.config
+D:\Workspace\Unity\NaiveOnlineGameTraining-Socket\TCP_Server\GameServer\bin\Debug\GameServer.exe
+D:\Workspace\Unity\NaiveOnlineGameTraining-Socket\TCP_Server\GameServer\bin\Debug\GameServer.pdb
+D:\Workspace\Unity\NaiveOnlineGameTraining-Socket\TCP_Server\GameServer\bin\Debug\Common.dll
+D:\Workspace\Unity\NaiveOnlineGameTraining-Socket\TCP_Server\GameServer\bin\Debug\MySql.Data.dll
+D:\Workspace\Unity\NaiveOnlineGameTraining-Socket\TCP_Server\GameServer\bin\Debug\Google.Protobuf.dll
+D:\Workspace\Unity\NaiveOnlineGameTraining-Socket\TCP_Server\GameServer\bin\Debug\Common.pdb
+D:\Workspace\Unity\NaiveOnlineGameTraining-Socket\TCP_Server\GameServer\bin\Debug\MySql.Data.xml
+D:\Workspace\Unity\NaiveOnlineGameTraining-Socket\TCP_Server\GameServer\obj\Debug\GameServer.csprojAssemblyReference.cache
+D:\Workspace\Unity\NaiveOnlineGameTraining-Socket\TCP_Server\GameServer\obj\Debug\GameServer.csproj.CoreCompileInputs.cache
+D:\Workspace\Unity\NaiveOnlineGameTraining-Socket\TCP_Server\GameServer\obj\Debug\GameServer.csproj.CopyComplete
+D:\Workspace\Unity\NaiveOnlineGameTraining-Socket\TCP_Server\GameServer\obj\Debug\GameServer.exe
+D:\Workspace\Unity\NaiveOnlineGameTraining-Socket\TCP_Server\GameServer\obj\Debug\GameServer.pdb

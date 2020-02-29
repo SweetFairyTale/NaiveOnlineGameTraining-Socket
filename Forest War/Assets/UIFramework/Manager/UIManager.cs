@@ -39,6 +39,7 @@ public class UIManager : BaseManager{
     private Dictionary<UIPanelType, string> panelPathDict;//存储所有面板Prefab的路径
     private Dictionary<UIPanelType, BasePanel> panelDict;//保存所有实例化面板的游戏物体身上的BasePanel组件
     private Stack<BasePanel> panelStack;
+    private MessagePanel msgPanel;
 
     //初始化Manager.
     public UIManager(GameFacade facade) : base(facade)
@@ -48,8 +49,18 @@ public class UIManager : BaseManager{
 
     //public UIManager() { ParseUIPanelTypeJson(); }
 
+
+    public override void OnInit()
+    {
+        base.OnInit();
+        PushPanel(UIPanelType.Message);
+        PushPanel(UIPanelType.Start);
+        //
+        
+    }
+
     /// <summary>
-    /// 把某个页面入栈，  把某个页面显示在界面上
+    /// 把某个页面入栈，同时显示该页面
     /// </summary>
     public void PushPanel(UIPanelType panelType)
     {
@@ -65,10 +76,12 @@ public class UIManager : BaseManager{
 
         BasePanel panel = GetPanel(panelType);
         panel.OnEnter();
+        //Debug.Log("push " + panel.name);
         panelStack.Push(panel);
     }
+
     /// <summary>
-    /// 出栈 ，把页面从界面上移除
+    /// 出栈，调用顶层页面的OnExit和下一个页面的OnResume.
     /// </summary>
     public void PopPanel()
     {
@@ -79,6 +92,7 @@ public class UIManager : BaseManager{
 
         //关闭栈顶页面的显示
         BasePanel topPanel = panelStack.Pop();
+        //Debug.Log("pop " + topPanel.name);
         topPanel.OnExit();
 
         if (panelStack.Count <= 0) return;
@@ -88,7 +102,7 @@ public class UIManager : BaseManager{
     }
 
     /// <summary>
-    /// 根据面板类型 得到实例化的面板
+    /// 根据面板类型实例化并得到面板
     /// </summary>
     /// <returns></returns>
     private BasePanel GetPanel(UIPanelType panelType)
@@ -111,6 +125,7 @@ public class UIManager : BaseManager{
             string path = panelPathDict.TryGet(panelType);
             GameObject instPanel = GameObject.Instantiate(Resources.Load(path)) as GameObject;
             instPanel.transform.SetParent(CanvasTransform,false);
+            instPanel.GetComponent<BasePanel>().UiManager = this;  //传递自身引用给具体Panel，方便其调用方法.
             panelDict.Add(panelType, instPanel.GetComponent<BasePanel>());
             return instPanel.GetComponent<BasePanel>();
         }
@@ -141,13 +156,39 @@ public class UIManager : BaseManager{
         }
     }
 
+
+    //↓以下均为新增代码
+
+    public void InitMessagePanel(MessagePanel messagePanel)
+    {
+        this.msgPanel = messagePanel;
+    }
+
+    public void ShowMessage(string msg)
+    {
+        if(msgPanel == null)
+        {
+            Debug.Log("[ERROR]:MessagePanel null reference!");
+        }
+        msgPanel.ShowMessage(msg);
+    }
+
+    public void ShowMessageAsync(string msg)
+    {
+        if(msgPanel == null)
+        {
+            Debug.Log("[ERROR]:MessagePanel null reference!");
+        }
+        msgPanel.ShowMessageAsync(msg);
+    }
+
     /// <summary>
     /// just for test
     /// </summary>
-    public void Test()
-    {
-        string path ;
-        panelPathDict.TryGetValue(UIPanelType.Knapsack,out path);
-        Debug.Log(path);
-    }
+    //public void Test()
+    //{
+    //    string path ;
+    //    panelPathDict.TryGetValue(UIPanelType.Knapsack,out path);
+    //    Debug.Log(path);
+    //}
 }
