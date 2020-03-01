@@ -1,7 +1,6 @@
 {
-  "infoList": 
-  [
-    {   
+  "infoList": [
+    {
       "panelTypeString": "Message",
       "path": "UIPanel/MessagePanel"
     },
@@ -19,6 +18,11 @@
     {
       "panelTypeString": "Register",
       "path": "UIPanel/RegisterPanel"
+    },
+
+    {
+      "panelTypeString": "RoomList",
+      "path": "UIPanel/RoomListPanel"
     }
 
   ]

@@ -6,6 +6,7 @@ using System.Net.Sockets;
 using Common;
 
 /// <summary>
+/// 作为游戏资源和各个模块的中介
 /// 管理当前客户端与服务器端的Socket连接.
 /// </summary>
 public class ClientManager : BaseManager {
@@ -29,7 +30,7 @@ public class ClientManager : BaseManager {
         }
         catch (Exception e)
         {
-            Debug.LogWarning("[ERROR]:Fail to connect server:" + e);
+            Debug.LogWarning("[ERROR]:Fail To Connect Server:" + e);
         }
     }
 
@@ -50,7 +51,7 @@ public class ClientManager : BaseManager {
         }
         catch(Exception e)
         {
-            Debug.Log("[Receive & Process message error]:" + e);
+            Debug.Log("[Receive & Process Message Error]:" + e);
         }
     }
 
@@ -81,7 +82,7 @@ public class ClientManager : BaseManager {
         }
         catch (Exception e)
         {
-            Debug.LogWarning("[ERROR]:Fail to close connection with Server:" + e);
+            Debug.LogWarning("[ERROR]:Fail To Close Connection With Server:" + e);
         }
     }
 }

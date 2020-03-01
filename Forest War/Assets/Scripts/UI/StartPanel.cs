@@ -29,14 +29,17 @@ public class StartPanel : BasePanel
 
     public override void OnPause()
     {
-        base.OnPause();       
-        loginButton.transform.DOScale(0, 0.3f).OnComplete(()=>loginButton.gameObject.SetActive(false));
+        loginButton.transform.DOScale(0, 0.3f).OnComplete(() =>
+        {
+            gameObject.SetActive(false);
+            //loginButton.gameObject.SetActive(false);
+        });
     }
 
     public override void OnResume()
     {
-        base.OnResume();        
-        loginButton.gameObject.SetActive(true);
+        gameObject.SetActive(true);
+        //loginButton.gameObject.SetActive(true);
         loginButton.transform.DOScale(1, 0.2f).OnComplete(()=>
             loginButton.GetComponent<Animator>().enabled = true
         );

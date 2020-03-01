@@ -15,6 +15,11 @@ public class BaseManager{
 
     }
 
+    public virtual void Update()
+    {
+        
+    }
+
     public virtual void OnDestroy()
     {
 

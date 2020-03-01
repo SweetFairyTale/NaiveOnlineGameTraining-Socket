@@ -7,7 +7,7 @@ using Common;
 
 public class LoginPanel : BasePanel
 {
-    private Button closeButton;
+    //private Button closeButton;  //用于AddListener的，未启用
     private InputField usernameInput;
     private InputField passwordInput;
     //private Button loginButton;
@@ -16,7 +16,7 @@ public class LoginPanel : BasePanel
 
     private void Start()
     {
-        closeButton = transform.Find("CloseButton").GetComponent<Button>();        
+        //closeButton = transform.Find("CloseButton").GetComponent<Button>();        
         usernameInput = transform.Find("UsernameLabel/UsernameInput").GetComponent<InputField>();
         passwordInput = transform.Find("PasswordLabel/PasswordInput").GetComponent<InputField>();
         //loginButton = transform.Find("LoginButton").GetComponent<Button>();
@@ -39,9 +39,7 @@ public class LoginPanel : BasePanel
     {
         PlayClickSound();
         transform.DOScale(0, 0.5f);
-        transform.DOLocalMove(new Vector3(0, -400, 0), 0.2f).OnComplete(
-            () => uiManager.PopPanel()
-            );       
+        transform.DOLocalMove(new Vector3(0, -400, 0), 0.3f).OnComplete(() => uiManager.PopPanel());
     }
 
     public void OnLoginButtonClick()
@@ -54,16 +52,19 @@ public class LoginPanel : BasePanel
         else
         {
             //通过LoginRequest发送登录数据到服务器端.
-            loginRequest.SendRequest(usernameInput.text, passwordInput.text);
+            //loginRequest.SendRequest(usernameInput.text, passwordInput.text);
+
+            uiManager.PushPanel(UIPanelType.RoomList);
         }
     }
 
     public void OnLoginResponse(ReturnCode returnCode)
     {
         if (returnCode == ReturnCode.Success)
-        {           
-            uiManager.ShowMessageAsync("登录成功");
+        {
+            //uiManager.ShowMessageAsync("登录成功");
             //TODO 登录成功 进入房间列表.  (或者输出消息后返回到request类中处理房间)
+            uiManager.PushPanelAsync(UIPanelType.RoomList);
         }
         else
         {
@@ -81,11 +82,12 @@ public class LoginPanel : BasePanel
     public override void OnPause()
     {
         transform.DOScale(0, 0.5f);
-        transform.DOLocalMove(new Vector3(0, -400, 0), 0.3f);       
+        transform.DOLocalMove(new Vector3(0, -400, 0), 0.3f).OnComplete(() => gameObject.SetActive(false));
     }
 
     public override void OnResume()
     {
+        gameObject.SetActive(true);
         transform.localScale = Vector3.zero;
         transform.DOScale(1, 0.2f);
         transform.localPosition = new Vector3(0, -400, 0);

@@ -81,7 +81,6 @@ public class RegisterPanel : BasePanel
 
     public override void OnExit()
     {
-        base.OnExit();
         gameObject.SetActive(false);
     }
 }

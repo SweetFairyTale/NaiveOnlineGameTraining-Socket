@@ -39,7 +39,7 @@ namespace GameServer.MyServer
             serverSocket.Bind(ipEndPoint);  //绑定ip端口.
             serverSocket.Listen(0);  //监听 连接数不设限.
             serverSocket.BeginAccept(AcceptCallBack, null);  //阻塞并等待客户端连接.
-         
+            Console.WriteLine("Server Start!");
         }
 
         //回调方法，创建一个客户端连接并加入列表.
@@ -49,6 +49,7 @@ namespace GameServer.MyServer
             Client client = new Client(clientSocket, this);
             client.Start();
             clientList.Add(client);
+            serverSocket.BeginAccept(AcceptCallBack, null);  //等待接收下一个连接.
         }
 
         public void RemoveClient(Client client)

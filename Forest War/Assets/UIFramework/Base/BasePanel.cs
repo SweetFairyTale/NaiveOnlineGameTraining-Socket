@@ -16,7 +16,7 @@ public class BasePanel : MonoBehaviour {
     }
     
     /// <summary>
-    /// 游戏界面刚显示
+    /// 当前页面入栈，界面显示
     /// </summary>
     public virtual void OnEnter()
     {
@@ -25,7 +25,7 @@ public class BasePanel : MonoBehaviour {
 
 
     /// <summary>
-    /// 界面暂停
+    /// 从当前面板跳转到其他面板，即新页面入栈，界面暂停
     /// </summary>
     public virtual void OnPause()
     {
@@ -34,7 +34,7 @@ public class BasePanel : MonoBehaviour {
 
 
     /// <summary>
-    /// 界面继续
+    /// 新页面出栈，当前界面恢复
     /// </summary>
     public virtual void OnResume()
     {
@@ -43,7 +43,7 @@ public class BasePanel : MonoBehaviour {
 
 
     /// <summary>
-    /// 界面不显示,退出这个界面，界面被关系
+    /// 当前面板被关闭，页面出栈
     /// </summary>
     public virtual void OnExit()
     {

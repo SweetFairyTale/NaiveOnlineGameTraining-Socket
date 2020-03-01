@@ -25,6 +25,6 @@ public class LoginRequest : BaseRequest
     {
         ReturnCode returnCode = (ReturnCode)int.Parse(data);      
         loginPanel.OnLoginResponse(returnCode);  //MAYDO 在Panel中return true并在此处处理进入房间.
-        Debug.Log("ReturnCode:" + returnCode.ToString());
+        //Debug.Log("ReturnCode:" + returnCode.ToString());
     }
 }

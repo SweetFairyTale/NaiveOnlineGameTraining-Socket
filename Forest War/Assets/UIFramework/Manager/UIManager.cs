@@ -41,6 +41,7 @@ public class UIManager : BaseManager{
     private Stack<BasePanel> panelStack;
     private MessagePanel msgPanel;
 
+
     //初始化Manager.
     public UIManager(GameFacade facade) : base(facade)
     {
@@ -48,7 +49,6 @@ public class UIManager : BaseManager{
     }
 
     //public UIManager() { ParseUIPanelTypeJson(); }
-
 
     public override void OnInit()
     {
@@ -156,6 +156,15 @@ public class UIManager : BaseManager{
         }
     }
 
+    /// <summary>
+    /// just for test
+    /// </summary>
+    //public void Test()
+    //{
+    //    string path ;
+    //    panelPathDict.TryGetValue(UIPanelType.Knapsack,out path);
+    //    Debug.Log(path);
+    //}
 
     //↓以下均为新增代码
 
@@ -182,13 +191,19 @@ public class UIManager : BaseManager{
         msgPanel.ShowMessageAsync(msg);
     }
 
-    /// <summary>
-    /// just for test
-    /// </summary>
-    //public void Test()
-    //{
-    //    string path ;
-    //    panelPathDict.TryGetValue(UIPanelType.Knapsack,out path);
-    //    Debug.Log(path);
-    //}
+    private UIPanelType panelTypeToPush = UIPanelType.None;
+    public override void Update()
+    {
+        if(panelTypeToPush != UIPanelType.None)  //监听到一个异步线程要push的panel.
+        {
+            PushPanel(panelTypeToPush);
+            panelTypeToPush = UIPanelType.None;
+        }
+    }
+
+    //提供在其他线程中PushPanel的方法.
+    public void PushPanelAsync(UIPanelType panelType)
+    {
+        panelTypeToPush = panelType;
+    }
 }

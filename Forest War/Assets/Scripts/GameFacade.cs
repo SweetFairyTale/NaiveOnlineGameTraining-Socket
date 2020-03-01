@@ -40,8 +40,13 @@ public class GameFacade : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        UpdateManager();
 	}
+
+    private void OnDestroy()
+    {
+        DestoryManager();
+    }
 
     private void InitManager()
     {
@@ -70,9 +75,10 @@ public class GameFacade : MonoBehaviour {
         clientManager.OnDestroy();
     }
 
-    private void OnDestroy()
+    //对需要处理异步回调但又没有继承自MonoBehaviour的类，让GameFacade提供Update监听.
+    private void UpdateManager()  
     {
-        DestoryManager();
+        uiManager.Update();
     }
 
     public void AddRequest(ActionCode actionCode, BaseRequest request)
@@ -87,6 +93,7 @@ public class GameFacade : MonoBehaviour {
 
     /// <summary>
     /// 转发ClientManager的处理请求到RequestManager，进而调用对应BaseRequest的派生类处理.
+    /// △注意：Response的所有处理处于异步线程中，无法直接访问Unity资源.
     /// </summary>
     /// <param name="actionCode"></param>
     /// <param name="data"></param>
