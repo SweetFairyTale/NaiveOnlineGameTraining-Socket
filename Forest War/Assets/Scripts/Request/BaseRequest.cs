@@ -13,7 +13,6 @@ public class BaseRequest : MonoBehaviour
     protected ActionCode actionCode = ActionCode.None;
     //protected GameFacade facade;  //好像也没什么卵用(
 
-
     public virtual void Awake()
     {
         GameFacade.Instance.AddRequest(actionCode, this);

@@ -57,20 +57,19 @@ namespace GameServer.Controller
                 Console.WriteLine("[ERROR]:" + "[" + controller.GetType() + "] no matching function ->" + methodName);
                 return;
             }
-            else
-            {
-                Console.WriteLine("[SUCCESS]:Found Function "+ methodName + " -- ControllerManager.cs");
-            }
+            //else
+            //{
+            //    Console.WriteLine("[SUCCESS]:Found Function "+ methodName + " -- ControllerManager.cs");
+            //}
             object[] parameters = new object[] { data, client, myServer };
             object obj = mi.Invoke(controller, parameters);  //通过mi在controller对象中调用methodName的方法，parameters可用于传递一组参数，调用结果返回值存放在obj.
             if(obj == null || string.IsNullOrEmpty(obj as string))  //不需要给客户端反馈.
             {
-                Console.WriteLine("One Request Handled, No Response Needed");
+                Console.WriteLine("[SUCCESS]:One Request Handled, No Response Needed");
                 return;
             }
-            Console.WriteLine("One Request Handled, RequestCode:[" +  requestCode + "]," +
-                                                   " ActionCode:[" + actionCode + "]," +
-                                                   " Response:[" + (ReturnCode)(int.Parse(obj as string)) + "]");
+            Console.WriteLine("[SUCCESS]:One Request Handled, RequestCode:[" +  requestCode + "]," +
+                                                   " ActionCode:[" + actionCode + "]");
             myServer.SendResponse(client, actionCode, obj as string);  //需要给客户端反馈.
         }
     }

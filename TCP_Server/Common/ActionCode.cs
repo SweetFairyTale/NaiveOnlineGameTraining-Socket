@@ -8,6 +8,9 @@ namespace Common
     {
         None,
         Login,
-        Register
+        Register,
+        ListRoom,
+        CreatRoom,
+        JoinRoom
     }
 }

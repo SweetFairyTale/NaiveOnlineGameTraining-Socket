@@ -32,8 +32,8 @@ namespace GameServer.MyServer
 
         public void Start()
         {
-            clientSocket.BeginReceive(msg.Data, msg.StartIndex, msg.RemainSize, SocketFlags.None, ReceiveCallback, null);
-            //?
+            if (clientSocket == null || clientSocket.Connected == false) return;
+            clientSocket.BeginReceive(msg.Data, msg.StartIndex, msg.RemainSize, SocketFlags.None, ReceiveCallback, null);           
         }
 
         private void ReceiveCallback(IAsyncResult ar)

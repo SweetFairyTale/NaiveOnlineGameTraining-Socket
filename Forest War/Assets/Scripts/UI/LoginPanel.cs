@@ -52,9 +52,9 @@ public class LoginPanel : BasePanel
         else
         {
             //通过LoginRequest发送登录数据到服务器端.
-            //loginRequest.SendRequest(usernameInput.text, passwordInput.text);
+            loginRequest.SendRequest(usernameInput.text, passwordInput.text);
 
-            uiManager.PushPanel(UIPanelType.RoomList);
+            //uiManager.PushPanel(UIPanelType.RoomList);  //测试客户端用
         }
     }
 

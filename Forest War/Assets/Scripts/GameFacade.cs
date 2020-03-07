@@ -111,6 +111,9 @@ public class GameFacade : MonoBehaviour {
         uiManager.ShowMessage(data);
     }
 
+    /// <summary>
+    /// 向服务器端发送请求.
+    /// </summary>
     public void SendRequest(RequestCode requestCode, ActionCode actionCode, string data)
     {
         clientManager.SendRequest(requestCode, actionCode, data);
@@ -124,5 +127,15 @@ public class GameFacade : MonoBehaviour {
     public void PlayComSound(string soundName)
     {
         audioManager.PlayComSound(soundName);
+    }
+
+    public void SetUserData(UserData ud)
+    {
+        playerManager.UserData = ud;
+    }
+
+    public UserData GetUserData()
+    {
+        return playerManager.UserData;
     }
 }

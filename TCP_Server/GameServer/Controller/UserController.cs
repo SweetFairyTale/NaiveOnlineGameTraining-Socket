@@ -13,6 +13,7 @@ namespace GameServer.Controller
     class UserController : BaseController
     {
         private UserDAO userDAO = new UserDAO();
+        private HistoryDAO historyDAO = new HistoryDAO();
         public UserController()
         {
             requestCode = RequestCode.User;
@@ -27,14 +28,18 @@ namespace GameServer.Controller
             User user = userDAO.AuthenticatingUser(client.MysqlConn, strs[0], strs[1]);
             if(user == null)
             {
-                return ((int)ReturnCode.Fail).ToString();  //1
+                Console.WriteLine("[Fail]:No User:[" + user.Username + "] Found or Wrong Password");
+                return ((int)ReturnCode.Fail).ToString();  //"1"
             }
             else
             {
                 Console.WriteLine("[SUCCESS]:" + user.Username + " Login Success");
-                return ((int)ReturnCode.Success).ToString();  //0
-            }
 
+                History history = historyDAO.GetHistoryByUserid(client.MysqlConn, user.Id);
+                Console.WriteLine("Read Player History: TotalCount:[" + history.TotalCount + "], WinCount:[" + history.WinCount + "]");
+                return string.Format("{0},{1},{2},{3}", ((int)ReturnCode.Success).ToString(), user.Username, history.TotalCount, history.WinCount);
+                //return ((int)ReturnCode.Success).ToString();  //"0"
+            }
         }
 
         /// <summary>
@@ -51,7 +56,8 @@ namespace GameServer.Controller
                 return ((int)ReturnCode.Fail).ToString();
             }
             
-            userDAO.RegisterUser(client.MysqlConn, strs[0], strs[1]);
+            userDAO.RegisterUser(client.MysqlConn, strs[0], strs[1]);  //TODO 还应初始化History表数据？--不需要手动.
+            Console.WriteLine("[SUCCESS]:Register User:" + strs[0]);
             return ((int)ReturnCode.Success).ToString();
         }
 

@@ -45,6 +45,7 @@ public class ClientManager : BaseManager {
         Debug.Log("ReceiveCallback Called");
         try
         {
+            if (clientSocket == null || clientSocket.Connected == false) return;
             int count = clientSocket.EndReceive(ar);
             msg.ReadMessage(count, OnProcessMessageCallback);
             Start();
