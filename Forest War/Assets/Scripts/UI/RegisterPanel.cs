@@ -7,7 +7,6 @@ using Common;
 
 public class RegisterPanel : BasePanel
 {
-
     private InputField usernameInput;
     private InputField passwordInput;
     private InputField repasswordInput;
@@ -25,10 +24,6 @@ public class RegisterPanel : BasePanel
 
     public override void OnEnter()
     {
-        //usernameInput = transform.Find("UsernameLable/UsernameInput").GetComponent<InputField>();
-        //passwordInput = transform.Find("PasswordLabel/PasswordInput").GetComponent<InputField>();
-        //repasswordInput = transform.Find("RepasswordLabel/RepasswordInput").GetComponent<InputField>();
-
         gameObject.SetActive(true);
         transform.localScale = Vector3.zero;
         transform.DOScale(1, 0.3f);
@@ -75,7 +70,7 @@ public class RegisterPanel : BasePanel
         }
         else
         {
-            uiManager.ShowMessageAsync("用户名重复");  //TODO 单独做成检测用户名是否可用按钮.
+            uiManager.ShowMessageAsync("用户名重复");
         }
     }
 

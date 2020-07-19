@@ -10,8 +10,7 @@ public class LoginPanel : BasePanel
     //private Button closeButton;  //用于AddListener的，未启用
     private InputField usernameInput;
     private InputField passwordInput;
-    //private Button loginButton;
-    //private Button registerButton;
+
     private LoginRequest loginRequest;
 
     private void Start()
@@ -19,8 +18,6 @@ public class LoginPanel : BasePanel
         //closeButton = transform.Find("CloseButton").GetComponent<Button>();        
         usernameInput = transform.Find("UsernameLabel/UsernameInput").GetComponent<InputField>();
         passwordInput = transform.Find("PasswordLabel/PasswordInput").GetComponent<InputField>();
-        //loginButton = transform.Find("LoginButton").GetComponent<Button>();
-        //registerButton = transform.Find("RegisterButton").GetComponent<Button>();
         loginRequest = GetComponent<LoginRequest>();
     }
 
@@ -30,9 +27,7 @@ public class LoginPanel : BasePanel
         transform.localScale = Vector3.zero;
         transform.DOScale(1, 0.3f);
         transform.localPosition = new Vector3(0, -400, 0);
-        transform.DOLocalMove(Vector3.zero, 0.3f);
-
-        //closeButton.onClick.AddListener(OnCloseButtonClick);  //由于Login页面存在多次出入栈的情况，在OnEnter中会添加多个监听.
+        transform.DOLocalMove(Vector3.zero, 0.3f);       
     }
 
     public void OnCloseButtonClick()
@@ -53,8 +48,6 @@ public class LoginPanel : BasePanel
         {
             //通过LoginRequest发送登录数据到服务器端.
             loginRequest.SendRequest(usernameInput.text, passwordInput.text);
-
-            //uiManager.PushPanel(UIPanelType.RoomList);  //测试客户端用
         }
     }
 
@@ -63,7 +56,6 @@ public class LoginPanel : BasePanel
         if (returnCode == ReturnCode.Success)
         {
             //uiManager.ShowMessageAsync("登录成功");
-            //TODO 登录成功 进入房间列表.  (或者输出消息后返回到request类中处理房间)
             uiManager.PushPanelAsync(UIPanelType.RoomList);
         }
         else
@@ -97,7 +89,6 @@ public class LoginPanel : BasePanel
     public override void OnExit()
     {
         gameObject.SetActive(false);
-        //Destroy(gameObject);
     }
 
 }

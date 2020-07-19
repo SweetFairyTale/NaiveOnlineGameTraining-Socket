@@ -12,3 +12,7 @@ D:\Workspace\Unity\NaiveOnlineGameTraining-Socket\TCP_Server\GameServer\obj\Debu
 D:\Workspace\Unity\NaiveOnlineGameTraining-Socket\TCP_Server\GameServer\obj\Debug\GameServer.csproj.CopyComplete
 D:\Workspace\Unity\NaiveOnlineGameTraining-Socket\TCP_Server\GameServer\obj\Debug\GameServer.exe
 D:\Workspace\Unity\NaiveOnlineGameTraining-Socket\TCP_Server\GameServer\obj\Debug\GameServer.pdb
+D:\Workspace\Unity\NaiveOnlineGameTraining-Socket\TCP_Server\GameServer\bin\Debug\GameServer.exe.manifest
+D:\Workspace\Unity\NaiveOnlineGameTraining-Socket\TCP_Server\GameServer\bin\Debug\GameServer.application
+D:\Workspace\Unity\NaiveOnlineGameTraining-Socket\TCP_Server\GameServer\obj\Debug\GameServer.exe.manifest
+D:\Workspace\Unity\NaiveOnlineGameTraining-Socket\TCP_Server\GameServer\obj\Debug\GameServer.application

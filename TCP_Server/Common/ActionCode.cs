@@ -10,7 +10,18 @@ namespace Common
         Login,
         Register,
         ListRoom,
-        CreatRoom,
-        JoinRoom
+        CreateRoom,
+        JoinRoom,
+        SyncRoom,
+        QuitRoom,
+        StartGame,
+        Countdown,
+        GoPlay,
+        SyncMove,
+        SyncArrow,
+        CauseDamage,
+        GameOver,
+        UpdateHistory,
+        AbortGame
     }
 }

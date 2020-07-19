@@ -10,7 +10,8 @@ public enum UIPanelType  {
     Login,
     Register,
     RoomList,
-    CreateRoom
+    Room,
+    Game
 
     
     //ItemMessage,

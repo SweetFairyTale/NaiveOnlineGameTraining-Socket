@@ -13,7 +13,7 @@ namespace TCP_Client
         static void Main(string[] args)
         {
             Socket clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            clientSocket.Connect(new IPEndPoint(IPAddress.Parse("127.0.0.1"), 2049));
+            clientSocket.Connect(new IPEndPoint(IPAddress.Parse("47.100.2.223"), 10001));
 
             byte[] data = new byte[1024];
             int count = clientSocket.Receive(data);
@@ -31,7 +31,7 @@ namespace TCP_Client
             //    clientSocket.Send(Encoding.UTF8.GetBytes(str));
             //}
 
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 10; i++)
             {
                 clientSocket.Send(Message.GetBytes(i.ToString()+"gav"+"大头"));  //利用自定义Message类发送数据.
             }

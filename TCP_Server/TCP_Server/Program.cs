@@ -22,15 +22,11 @@ namespace TCP_Server
         static void StartServerAsync()
         {
             Socket serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            IPAddress ipAddress = IPAddress.Parse("127.0.0.1");  //IP:47.100.2.223
-            IPEndPoint ipEndPoint = new IPEndPoint(ipAddress, 2049);
-            serverSocket.Bind(ipEndPoint);  //绑定ip与端口号.
-            serverSocket.Listen(10);  //同时等待处理的队列长度.
-
-            //Socket clientSocket = serverSocket.Accept();  //接收一个客户端连接(Accept使用同步的方法).
-
-            serverSocket.BeginAccept(AcceptCallBack, serverSocket);  //修改后可异步接收多个客户端.
-
+            IPAddress ipAddress = IPAddress.Parse("172.16.59.6");  //公网IP:47.100.2.223  内网IP:172.16.59.6
+            IPEndPoint ipEndPoint = new IPEndPoint(ipAddress, 10001);
+            serverSocket.Bind(ipEndPoint);
+            serverSocket.Listen(10);
+            serverSocket.BeginAccept(AcceptCallBack, serverSocket);
         }
         static Message msg = new Message();  //自定义消息处理对象.
 

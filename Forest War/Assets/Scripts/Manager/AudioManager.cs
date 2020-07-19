@@ -24,18 +24,9 @@ public class AudioManager : BaseManager {
         GameObject audioSourceGO = new GameObject("AudioSource(GameObject)");
         bgAudioSource = audioSourceGO.AddComponent<AudioSource>();
         comAudioSource = audioSourceGO.AddComponent<AudioSource>();
-
         PlaySound(bgAudioSource, bgModerateSound, 0.5f, true);
-
     }
 
-    /// <summary>
-    /// 让指定的AudioSource播放指定声音.
-    /// </summary>
-    /// <param name="audioSource">指定AudioSource</param>
-    /// <param name="audioClip">声音资源名</param>
-    /// <param name="volume">控制声音大小</param>
-    /// <param name="loop">是否循环，默认为不循环</param>
     private void PlaySound(AudioSource audioSource, string audioClip, float volume, bool loop = false)
     {
         audioSource.clip = Resources.Load<AudioClip>(Path_Prefix + audioClip);
@@ -43,11 +34,6 @@ public class AudioManager : BaseManager {
         audioSource.loop = loop;
         audioSource.Play();
     }
-
-    //private AudioClip LoadSound(string soundName)
-    //{
-    //    return Resources.Load<AudioClip>(Path_Prefix + soundName);
-    //}
 
     public void PlayBgSound(string soundName)
     {

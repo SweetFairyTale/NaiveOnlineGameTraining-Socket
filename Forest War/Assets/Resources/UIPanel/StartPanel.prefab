@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 42804927697453130}
   - component: {fileID: 42804927697453131}
   - component: {fileID: 42804927697453132}
+  - component: {fileID: 4668555571742785001}
   m_Layer: 5
   m_Name: Login
   m_TagString: Untagged
@@ -138,6 +139,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4668555571742785001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 42804927697453129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1573420865, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 3.6, y: -2.2}
+  m_UseGraphicAlpha: 1
 --- !u!1 &42804927921060845
 GameObject:
   m_ObjectHideFlags: 0

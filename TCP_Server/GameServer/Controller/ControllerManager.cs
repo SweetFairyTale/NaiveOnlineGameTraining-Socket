@@ -30,6 +30,8 @@ namespace GameServer.Controller
             DefaultController defaultController = new DefaultController();
             controllerDict.Add(defaultController.RequestCode, defaultController);
             controllerDict.Add(RequestCode.User, new UserController());
+            controllerDict.Add(RequestCode.Room, new RoomController());
+            controllerDict.Add(RequestCode.Game, new GameController());
         }
 
         /// <summary>
@@ -46,7 +48,7 @@ namespace GameServer.Controller
             bool isGet = controllerDict.TryGetValue(requestCode, out controller);
             if(isGet == false)
             {
-                Console.WriteLine("[ERROR]:" + "[" + requestCode + "] no matching controller-class");  //实际应输出到日志.
+                Console.WriteLine("[ERROR]:" + "[" + requestCode + "] no matching controller-class");
                 return;
             }
         
@@ -57,19 +59,13 @@ namespace GameServer.Controller
                 Console.WriteLine("[ERROR]:" + "[" + controller.GetType() + "] no matching function ->" + methodName);
                 return;
             }
-            //else
-            //{
-            //    Console.WriteLine("[SUCCESS]:Found Function "+ methodName + " -- ControllerManager.cs");
-            //}
+
             object[] parameters = new object[] { data, client, myServer };
             object obj = mi.Invoke(controller, parameters);  //通过mi在controller对象中调用methodName的方法，parameters可用于传递一组参数，调用结果返回值存放在obj.
             if(obj == null || string.IsNullOrEmpty(obj as string))  //不需要给客户端反馈.
             {
-                Console.WriteLine("[SUCCESS]:One Request Handled, No Response Needed");
                 return;
             }
-            Console.WriteLine("[SUCCESS]:One Request Handled, RequestCode:[" +  requestCode + "]," +
-                                                   " ActionCode:[" + actionCode + "]");
             myServer.SendResponse(client, actionCode, obj as string);  //需要给客户端反馈.
         }
     }

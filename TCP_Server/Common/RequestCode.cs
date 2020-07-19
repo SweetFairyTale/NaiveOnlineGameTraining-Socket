@@ -8,7 +8,8 @@ namespace Common
     {
         None,
         User,
-        Room
+        Room,
+        Game
 
     }
 }

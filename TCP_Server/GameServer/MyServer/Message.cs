@@ -12,11 +12,6 @@ namespace GameServer.MyServer
         private byte[] data = new byte[1024];
         private int startIndex = 0;  //数组中存储数据的字节数.
 
-        //public void AddCount(int count)  //交由ReadMessage完成.
-        //{
-        //    startIndex += count;
-        //}
-
         //get only
         public byte[] Data
         {
@@ -50,21 +45,22 @@ namespace GameServer.MyServer
             startIndex += newDataAmount;
             while (true)
             {
-                if (startIndex <= 4) return;
+                if (startIndex <= 4) return;  //数据头不完整 或 粘包的所有数据处理完毕且数据缓存为空.
                 int count = BitConverter.ToInt32(data, 0);
-                if ((startIndex - 4) >= count)  //TODO:修改数据头长度.
+
+                if ((startIndex - 4) >= count)  
                 {
-                    //string s = Encoding.UTF8.GetString(data, 4, count);
-                    //Console.WriteLine("解析到的数据:" + s);
+                    //==时表示实际数据和数据头count是一致的，循环只执行一次.
+                    //>时表示可能发生了粘包，此时循环体尝试区分各个包的实际内容.
 
                     RequestCode requestCode = (RequestCode)BitConverter.ToInt32(data, 4);
                     ActionCode actionCode = (ActionCode)BitConverter.ToInt32(data, 8);
                     string strData = Encoding.UTF8.GetString(data, 12, count - 8);
-                    processDataCallback(requestCode, actionCode, strData);  //无法return多个值所以使用回调方法直接在这儿处理？
+                    processDataCallback(requestCode, actionCode, strData);
                     Array.Copy(data, count + 4, data, 0, startIndex - 4 - count);
                     startIndex -= count + 4;
                 }
-                else
+                else  //当前数据不完整.
                 {
                     break;
                 }

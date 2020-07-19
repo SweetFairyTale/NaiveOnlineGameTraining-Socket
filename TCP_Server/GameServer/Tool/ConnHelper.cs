@@ -13,7 +13,8 @@ namespace GameServer.Tool
 {
     class ConnHelper
     {
-        public const string CONNSTR = "datasource=127.0.0.1;port=3306;database=forestwar;user=root;pwd=0304";  //连接字符串.(Class 35)
+        //public const string CONNSTR = "datasource=127.0.0.1;port=3306;database=forestwar;user=root;pwd=0304";  //连接字符串.(Class 35)
+        public const string CONNSTR = "datasource=127.0.0.1;port=3306;database=junglewar;user=root;pwd=0304";
 
         public static MySqlConnection Connect()
         {
@@ -38,7 +39,7 @@ namespace GameServer.Tool
             }
             else
             {
-                Console.WriteLine("[ERROR]:MySqlConnection is null!");
+                Console.WriteLine("[ERROR]:MySqlConnection is null!(Close Fail)");
             }
         }
 

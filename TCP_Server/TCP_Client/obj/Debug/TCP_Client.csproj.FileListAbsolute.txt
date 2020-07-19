@@ -4,3 +4,10 @@ E:\Unity_resources\NaiveOnlineGameTraining-Socket\TCP_Server\TCP_Client\bin\Debu
 E:\Unity_resources\NaiveOnlineGameTraining-Socket\TCP_Server\TCP_Client\obj\Debug\TCP_Client.csprojResolveAssemblyReference.cache
 E:\Unity_resources\NaiveOnlineGameTraining-Socket\TCP_Server\TCP_Client\obj\Debug\TCP_Client.exe
 E:\Unity_resources\NaiveOnlineGameTraining-Socket\TCP_Server\TCP_Client\obj\Debug\TCP_Client.pdb
+D:\Workspace\Unity\NaiveOnlineGameTraining-Socket\TCP_Server\TCP_Client\bin\Debug\TCP_Client.exe.config
+D:\Workspace\Unity\NaiveOnlineGameTraining-Socket\TCP_Server\TCP_Client\bin\Debug\TCP_Client.exe
+D:\Workspace\Unity\NaiveOnlineGameTraining-Socket\TCP_Server\TCP_Client\bin\Debug\TCP_Client.pdb
+D:\Workspace\Unity\NaiveOnlineGameTraining-Socket\TCP_Server\TCP_Client\obj\Debug\TCP_Client.csprojAssemblyReference.cache
+D:\Workspace\Unity\NaiveOnlineGameTraining-Socket\TCP_Server\TCP_Client\obj\Debug\TCP_Client.csproj.CoreCompileInputs.cache
+D:\Workspace\Unity\NaiveOnlineGameTraining-Socket\TCP_Server\TCP_Client\obj\Debug\TCP_Client.exe
+D:\Workspace\Unity\NaiveOnlineGameTraining-Socket\TCP_Server\TCP_Client\obj\Debug\TCP_Client.pdb

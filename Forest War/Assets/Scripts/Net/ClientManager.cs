@@ -11,8 +11,11 @@ using Common;
 /// </summary>
 public class ClientManager : BaseManager {
    
-    private const string IP = "127.0.0.1";
-    private const int PORT = 6688;
+    //private const string IP = "127.0.0.1";
+    //private const int PORT = 6688;
+
+    private const string IP = "47.100.2.223";
+    private const int PORT = 10000;
 
     private Socket clientSocket;
     private Message msg = new Message();
@@ -42,7 +45,6 @@ public class ClientManager : BaseManager {
     //△System.Net.Sockets中的BeginReceive的回调方法无法直接访问Unity中的游戏资源△
     private void ReceiveCallback(IAsyncResult ar)
     {
-        Debug.Log("ReceiveCallback Called");
         try
         {
             if (clientSocket == null || clientSocket.Connected == false) return;

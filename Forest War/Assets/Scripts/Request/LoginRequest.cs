@@ -25,7 +25,7 @@ public class LoginRequest : BaseRequest
     {
         string[] strs = data.Split(',');
         ReturnCode returnCode = (ReturnCode)int.Parse(strs[0]); 
-        loginPanel.OnLoginResponse(returnCode);  //MAYDO 在Panel中return true并在此处处理进入房间.
+        loginPanel.OnLoginResponse(returnCode);
         if(returnCode == ReturnCode.Success)
         {
             string username = strs[1];

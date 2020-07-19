@@ -55,19 +55,17 @@ public class UIManager : BaseManager{
         base.OnInit();
         PushPanel(UIPanelType.Message);
         PushPanel(UIPanelType.Start);
-        //
         
     }
 
     /// <summary>
-    /// 把某个页面入栈，同时显示该页面
+    /// 新页面入栈(生命周期事件: A->B, A.OnPouse(), B.OnEnter())
     /// </summary>
-    public void PushPanel(UIPanelType panelType)
+    public BasePanel PushPanel(UIPanelType panelType)
     {
         if (panelStack == null)
             panelStack = new Stack<BasePanel>();
 
-        //判断一下栈里面是否有页面
         if (panelStack.Count > 0)
         {
             BasePanel topPanel = panelStack.Peek();
@@ -76,11 +74,12 @@ public class UIManager : BaseManager{
 
         BasePanel panel = GetPanel(panelType);
         panel.OnEnter();
-        //Debug.Log("push " + panel.name);
         panelStack.Push(panel);
+        return panel;
     }
 
     /// <summary>
+    /// 当前页面出栈(生命周期事件: B->A, B.OnExit(), A.OnResume())
     /// 出栈，调用顶层页面的OnExit和下一个页面的OnResume.
     /// </summary>
     public void PopPanel()
@@ -90,9 +89,7 @@ public class UIManager : BaseManager{
 
         if (panelStack.Count <= 0) return;
 
-        //关闭栈顶页面的显示
         BasePanel topPanel = panelStack.Pop();
-        //Debug.Log("pop " + topPanel.name);
         topPanel.OnExit();
 
         if (panelStack.Count <= 0) return;
@@ -113,7 +110,7 @@ public class UIManager : BaseManager{
         }
 
         //BasePanel panel;
-        //panelDict.TryGetValue(panelType, out panel);//TODO
+        //panelDict.TryGetValue(panelType, out panel);
 
         BasePanel panel = panelDict.TryGet(panelType);
 
@@ -151,7 +148,6 @@ public class UIManager : BaseManager{
 
         foreach (UIPanelInfo info in jsonObject.infoList) 
         {
-            //Debug.Log(info.panelType);
             panelPathDict.Add(info.panelType, info.path);
         }
     }
@@ -191,19 +187,34 @@ public class UIManager : BaseManager{
         msgPanel.ShowMessageAsync(msg);
     }
 
-    private UIPanelType panelTypeToPush = UIPanelType.None;
-    public override void Update()
-    {
-        if(panelTypeToPush != UIPanelType.None)  //监听到一个异步线程要push的panel.
-        {
-            PushPanel(panelTypeToPush);
-            panelTypeToPush = UIPanelType.None;
-        }
-    }
-
     //提供在其他线程中PushPanel的方法.
+    private UIPanelType panelTypeToPush = UIPanelType.None;   
     public void PushPanelAsync(UIPanelType panelType)
     {
         panelTypeToPush = panelType;
     }
+
+    //提供在其他线程中PopPanel的方法.
+    private bool isPopPanel = false;
+    public void PopPanelAsync()
+    {
+        isPopPanel = true;
+    }
+
+    public override void Update()
+    {
+        if(panelTypeToPush != UIPanelType.None)  //监听到一个异步线程要push的PanelType.
+        {
+            PushPanel(panelTypeToPush);
+            panelTypeToPush = UIPanelType.None;
+        }
+
+        if(isPopPanel)
+        {
+            PopPanel();
+            isPopPanel = false;
+        }
+    }
+
+    
 }

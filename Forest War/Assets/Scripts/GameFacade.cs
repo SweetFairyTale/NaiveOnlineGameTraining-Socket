@@ -22,10 +22,11 @@ public class GameFacade : MonoBehaviour {
     private RequestManager requestManager;
     private ClientManager clientManager;
 
-    
+    private bool isGameBegin = false;
+   
     void Awake()
     {
-        if(_instance != null)  //避免场景中有多个实例.
+        if(_instance != null)
         {
             Destroy(gameObject);
             return;
@@ -33,14 +34,18 @@ public class GameFacade : MonoBehaviour {
         _instance = this;
     }
 
-	// Use this for initialization
 	void Start () {
         InitManager();
 	}
 	
-	// Update is called once per frame
 	void Update () {
         UpdateManager();
+
+        if (isGameBegin)
+        {
+            OnGameBegin();
+            isGameBegin = false;
+        }
 	}
 
     private void OnDestroy()
@@ -79,6 +84,7 @@ public class GameFacade : MonoBehaviour {
     private void UpdateManager()  
     {
         uiManager.Update();
+        cameraManager.Update();  //测试用
     }
 
     public void AddRequest(ActionCode actionCode, BaseRequest request)
@@ -137,5 +143,53 @@ public class GameFacade : MonoBehaviour {
     public UserData GetUserData()
     {
         return playerManager.UserData;
+    }
+
+    public void SetCurrentRoleType(RoleType rt)
+    {
+        playerManager.SetCurrentRoleType(rt);
+    }
+
+    public GameObject GetCurrentRoleGameObject()
+    {
+        return playerManager.CurrentRoleGameObject;
+    }
+
+    public void OnGameBeginAsync()  //开始倒计时
+    {
+        isGameBegin = true;
+    }
+
+    private void OnGameBegin()
+    {
+        playerManager.InitRoles();
+        cameraManager.EnablePlayerFollowing();
+    }
+
+    public void InitGame()
+    {
+        playerManager.AddControlScripts();
+        playerManager.InitGameSyncRequest();
+    }
+
+    public void SendCauseDamage(int damage)
+    {
+        playerManager.SendCauseDamage(damage);
+    }
+
+    public void DisableLocalPlayerControll()
+    {
+        playerManager.DisableLocalPlayerControll();
+    }
+
+    public void GameOver()
+    {
+        cameraManager.EnableRoamCamera();
+        playerManager.GameOver();
+    }
+
+    public void UpdateUserData(int totalCount, int winCount)
+    {
+        playerManager.UpdateUserData(totalCount, winCount);
     }
 }

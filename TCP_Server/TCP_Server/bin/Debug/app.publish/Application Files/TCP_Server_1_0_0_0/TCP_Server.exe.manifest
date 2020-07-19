@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="TCP_Server.exe" version="1.0.0.0" publicKeyToken="5399b4eb41d2f58c" language="neutral" processorArchitecture="msil" type="win32" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="TCP_Server" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="TCP_Server.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          UAC 清单选项
+         若想要更改 Windows 用户帐户控制级别，请
+         将 requestedExecutionLevel 节点替换为下述某项。
+
+       <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+       <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+       <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+        若想要使用文件和注册表虚拟化以实现向后
+        兼容，请删除 requestedExecutionLevel 节点。
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TCP_Server.exe" size="7136">
+      <assemblyIdentity name="TCP_Server" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>J9ZcN/40+JuOg7ngn51VqQio2TZ8UIaFKO1Kb1P4xlg=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="TCP_Server.exe.config" size="189">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>6N7MliNbVJSIAIPrecIshMbZ7zEoKLr5SQvud4LDUOw=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=LAPTOP-5P30BCMU\79211" issuerKeyHash="2ad7dbe360205a7c9ffa4f1007f8bd2220ce6ee9" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>X80w31nSIdegEQsttfDxS5n+6q8d6IxEa1Qn4BHJMKk=</DigestValue></Reference></SignedInfo><SignatureValue>gB+eVjKgx+lUe4CkT1Baq3B5PNV4s1bNfexw/olVAdrLrAT/hbYVX3t3btzWpLAXMJZY+kCcQs5haJdmIiHxQjXPGzZYXj+WQvWP57blORMVSru9TsJzCjVFhMLfE2f3iYLdDhGXXE1iy2ACtBpyXoQSxGLA9bPyRLzE4Sx/+t0=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>zdNkyJJVU68a2k+qZf27LOeThpPUK0iMCuFcIS7uJleBPNlmIfzPXGpQY3MmSs+vrKGM/REITz4HacAXVoQQlqNeMmpLWNK72tdofhgOmbZn+c4bYxRW3wo8mqt7XPa+YYhHeoOWAnuALSapFImHy/+EiMwyfC6TWO4LM1gQbHE=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="a930c911e027546b448ce81dafeafe994bf1f0b52d0b11a0d721d259df30cd5f" Description="" Url=""><as:assemblyIdentity name="TCP_Server.exe" version="1.0.0.0" publicKeyToken="5399b4eb41d2f58c" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=LAPTOP-5P30BCMU\79211</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>I2fQtIpf9HXVWwgL00NB1mKAIyr3SX2GN9jE7sTXQZY=</DigestValue></Reference></SignedInfo><SignatureValue>OmeXiWAhaoWk1adlCJ0+VnWeOXaLA9KjwLPptmTarfyGYZPpDLv8AsGIWTcsmKBbmnJbhduNYiy1U0HbRpdEusDW+Rh9BtqWJAbL2VS84cuKOVkLW7+a476OY9549zalccSOQDBV5kv8VFO9QFJci/vxkMSlCub7SCyE02P3cWU=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>zdNkyJJVU68a2k+qZf27LOeThpPUK0iMCuFcIS7uJleBPNlmIfzPXGpQY3MmSs+vrKGM/REITz4HacAXVoQQlqNeMmpLWNK72tdofhgOmbZn+c4bYxRW3wo8mqt7XPa+YYhHeoOWAnuALSapFImHy/+EiMwyfC6TWO4LM1gQbHE=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB7TCCAVagAwIBAgIQU+9X0h6+FoVKwkttUP5qADANBgkqhkiG9w0BAQsFADA1MTMwMQYDVQQDHioATABBAFAAVABPAFAALQA1AFAAMwAwAEIAQwBNAFUAXAA3ADkAMgAxADEwHhcNMjAwNTEwMDgyMTM0WhcNMjEwNTEwMTQyMTM0WjA1MTMwMQYDVQQDHioATABBAFAAVABPAFAALQA1AFAAMwAwAEIAQwBNAFUAXAA3ADkAMgAxADEwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAM3TZMiSVVOvGtpPqmX9uyznk4aT1CtIjArhXCEu7iZXgTzZZiH8z1xqUGNzJkrPr6yhjP0RCE8+B2nAF1aEEJajXjJqS1jSu9rXaH4YDpm2Z/nOG2MUVt8KPJqre1z2vmGIR3qDlgJ7gC0mqRSJh8v/hIjMMnwuk1juCzNYEGxxAgMBAAEwDQYJKoZIhvcNAQELBQADgYEADefTvLYymwdz7CNgFzKKtFlyLgbDHGFpGTkDh7JUwxzMnYxZIB3uEcjUTMX8sVh2Q2lhv+NoYy4Y8BCR1ZkVj93bXa5El8hugDrsFfnPr1xZwsUNuyYFXB3OOfVVXuv5N2FGsi7n5aVbLd6Tt/16NIrUMK5yTd3kMBpoN9GVE5k=</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

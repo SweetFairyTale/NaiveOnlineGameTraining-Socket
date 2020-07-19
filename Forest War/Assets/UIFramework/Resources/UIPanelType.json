@@ -26,8 +26,13 @@
     },
 
     {
-      "panelTypeString": "CreateRoom",
+      "panelTypeString": "Room",
       "path": "UIPanel/RoomPanel"
+    },
+
+    {
+      "panelTypeString": "Game",
+      "path": "UIPanel/GamePanel"
     }
 
   ]
