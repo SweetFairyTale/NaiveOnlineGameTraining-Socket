@@ -7,9 +7,7 @@ using UnityEngine;
 using Common;
 
 public class PlayerManager : BaseManager {
-
-
-    public UserData UserData { get; set; }
+   
     public GameObject CurrentRoleGameObject
     {
         get
@@ -17,6 +15,8 @@ public class PlayerManager : BaseManager {
             return currentRoleGameObject;
         }
     }
+
+    public UserData UserData { get; set; }
 
     private Dictionary<RoleType, RoleData> roleDataDict = new Dictionary<RoleType, RoleData>();
     private Transform birthplaces;
@@ -43,6 +43,7 @@ public class PlayerManager : BaseManager {
     }
 
     //获取服务器分配给当前客户端的角色游戏物体，以及另一个玩家角色游戏物体.
+
     public void InitRoles()
     {
         foreach(RoleData rd in roleDataDict.Values)

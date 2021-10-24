@@ -3,17 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Common;
 
-//单例
 public class GameFacade : MonoBehaviour {
-
-    private static GameFacade _instance;
-    public static GameFacade Instance
-    {
-        get
-        {
-            return _instance;
-        }
-    }
+    public static GameFacade Instance { get; private set; }
 
     private UIManager uiManager;
     private AudioManager audioManager;
@@ -26,12 +17,12 @@ public class GameFacade : MonoBehaviour {
    
     void Awake()
     {
-        if(_instance != null)
+        if(Instance != null)
         {
             Destroy(gameObject);
             return;
         }
-        _instance = this;
+        Instance = this;
     }
 
 	void Start () {
